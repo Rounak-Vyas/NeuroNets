@@ -1,0 +1,46 @@
+Team Name : Neuro Nets 
+
+OVERVIEW:
+Modern networks face increasing challenges in monitoring and securing traffic due to encrypted communication and evolving attack techniques. This project uses Machine Learning to automate network threat detection by analyzing traffic patterns.
+
+GOAL:
+To detect and classify network traffic in real time using AI, targeting:
+1. Port Scanning Attacks
+2. DHCP Starvation Attacks
+3. IoT Botnet Scanning Behavior
+
+---
+
+ATTACK DESCRIPTIONS:
+
+1. PORT SCANNING:
+- SYN-based port scans probe multiple ports to discover open services.
+- Detected by observing many TCP SYN packets from one source IP to many destination ports.
+- Impact: Attackers gather information for future exploitation.
+
+2. DHCP STARVATION:
+- Attacker sends repeated DHCP requests with spoofed MACs to exhaust the DHCP server’s IP pool.
+- Detectable by monitoring for high volumes of DHCP DISCOVER packets from a single host.
+- Impact: Denial of service for legitimate users.
+
+3. IOT BOTNET SCANNING:
+- Infected IoT devices scan random IPs looking for other vulnerable devices.
+- Identified by high-frequency outbound connections from a known IoT source.
+- Impact: Enables botnet growth and future DDoS attacks.
+
+---
+
+IMPLEMENTATION STEPS:
+
+1. Capture `.pcap` files simulating each attack.
+2. Extract traffic features using Scapy (`feature_extractor.py`).
+3. Train a Random Forest model on labeled traffic data (`train_model.py`).
+4. Detect attacks in real time using live sniffing (`live_detector.py`).
+
+---
+
+EXPECTED OUTCOME:
+- Detects known attacks in real time with low false positives.
+- Automatically classifies traffic into normal or attack classes.
+- Can be extended to support more attacks in the future.
+
